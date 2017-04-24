@@ -1,0 +1,4 @@
+{
+    "int": "$this_is_an_int, int$",
+    "string": "$this_is_a_string, string$"
+}
