@@ -42,7 +42,7 @@ int jenny(jenny_t *j, posix_write_fn write, int fd) {
                 // reverse solidus, and the control characters (U+0000 through
                 // U+001F).
                 for (int i = 0; i < strlen(*((char **)j->u.var.p)); i++) {
-                    unsigned char c = (*((char**)j->u.var.p))[i];
+                    unsigned char c = (*((char **)j->u.var.p))[i];
                     if (c == '"') {
                         write_all(write, fd, "\\\"", 2);
                     } else if (c == '\\') {

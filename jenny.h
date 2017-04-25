@@ -23,6 +23,6 @@ typedef struct {
 
 typedef ssize_t (*posix_write_fn)(int, const void *, size_t);
 
-int jenny(jenny_t*, posix_write_fn, int);
+int jenny(jenny_t *, posix_write_fn, int);
 
 #endif
