@@ -4,7 +4,7 @@
 run_tests: test
 	./test
 
-CFLAGS=-std=c99 -pedantic -Wall
+CFLAGS=-std=c99 -pedantic -Wall -Werror
 
 jenny: main.c
 	$(CC) $(CFLAGS) -o $@ $<
