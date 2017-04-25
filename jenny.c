@@ -31,7 +31,7 @@ int jenny(jenny_t *j, posix_write_fn write, int fd) {
 
             case JENNY_INT_TYPE:
                 if (snprintf(buffer, sizeof(buffer), "%i", *(int *)j->u.var.p) >= sizeof(buffer)) {
-                    fprintf(stderr, "jenny() needed more than %lu bytes for int", sizeof(buffer));
+                    fprintf(stderr, "jenny() needed more than %zu bytes for int", sizeof(buffer));
                 }
                 write_all(write, fd, buffer, strlen(buffer));
                 break;
