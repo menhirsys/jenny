@@ -33,13 +33,27 @@ Then, you use `./jenny` to generate a `.c` file:
 ```
 
 Then, you `#include` the C file and use the `jenny` API to output the JSON to
-any POSIX write() -ish function that you want.
+any write() -ish function that you want. In this case, I'm wrapping `write`
+itself to print to STDOUT:
 
 ```
-    int this_is_an_int = 20;
-    char *this_is_a_string = "snarf";
+#include <unistd.h>
 
-    jenny_t test[] =
-    #include "test.jenny.c"
-    jenny(test, write, STDOUT_FILENO);
+#include "jenny.h"
+
+int this_is_an_int = 20;
+char *this_is_a_string = "\"abc\n\t\\123";
+jenny_t test[] =
+#include "test.jenny.c"
+
+ssize_t write_wrapper(void *p_fd, const void *p, size_t len) {
+    return write(*(int *)p_fd, p, len);
+}
+
+int main(void) {
+    int fd = STDOUT_FILENO;
+    jenny(test, write_wrapper, &fd);
+
+    return 0;
+}
 ```
