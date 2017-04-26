@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
                 if (state == CHUNK) {
                     // unless it's a chunk, we can cope with that.
                     printf("    { .type = JENNY_CHUNK, .u.chunk = \"");
-                    print_c_escaped(token, token_len - 2);
+                    print_c_escaped(token, token_len);
                     printf("\"},\n");
                     token_len = 0;
                 } else {
